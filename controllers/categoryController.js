@@ -6,7 +6,11 @@ exports.index = asyncHandler(async (req, res, next) => {
 });
 
 exports.category_list = asyncHandler(async (req, res, next) => {
-    res.send('category_list not implemented');
+    const allCategories = await Category.find().exec();
+    res.render('category_list', {
+        title: "Categories",
+        category_list: allCategories
+    })
 });
 
 exports.category_items = asyncHandler(async (req, res, next) => {
