@@ -24,6 +24,8 @@ router.post('/category/:id/update', category_controller.category_update_post);
 
 /* Item */
 
+router.get('/item/:id', item_controller.item_detail);
+
 router.get('/item/create', item_controller.item_create_get);
 router.post('/item/create', item_controller.item_create_post);
 
