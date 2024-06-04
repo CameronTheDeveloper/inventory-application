@@ -21,7 +21,7 @@ exports.category_items = asyncHandler(async (req, res, next) => {
     ]);
 
     res.render('category_items', {
-        title: category.name,
+        category: category,
         item_list: allItemsInCategory
     });
 });
