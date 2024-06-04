@@ -10,6 +10,8 @@ router.get('/', category_controller.index);
 
 router.get('/categories', category_controller.category_list);
 
+router.get('/category/:id', category_controller.category_items);
+
 router.get('/category/create', category_controller.category_create_get);
 router.post('/category/create', category_controller.category_create_post);
 
