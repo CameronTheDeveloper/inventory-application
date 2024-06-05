@@ -35,14 +35,14 @@ exports.category_create_get = asyncHandler(async (req, res, next) => {
 });
 
 exports.category_create_post = [
-    body('name')
+    body('category_name')
         .trim()
         .isLength({min: 1})
         .escape()
         .withMessage('Category name must be specified.')
         .isAlphanumeric()
         .withMessage('Category name has non-alphanumeric characters.'),
-    body('description')
+    body('category_desc')
         .trim()
         .isLength(10)
         .escape()
