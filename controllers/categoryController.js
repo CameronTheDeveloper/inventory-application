@@ -62,14 +62,14 @@ exports.category_create_post = [
                 errors: errors.array(),
             });
         } else {
-            const categoryExists = await Category.findOne({name: req.body.name})
+            const categoryExists = await Category.findOne({name: req.body.category_name})
                 .collation({ locale: "en", strength: 2 })
                 .exec();
 
             if (categoryExists){
                 res.redirect(categoryExists.url);
             } else {
-                await Category.save();
+                await category.save();
                 res.redirect(category.url);
             }
         }
