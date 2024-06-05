@@ -49,8 +49,8 @@ exports.category_create_post = [
         const errors = validationResult(req);
 
         const category = new Category({
-            name: req.body.name, 
-            description: req.body.description});
+            name: req.body.category_name, 
+            description: req.body.category_desc});
         
         if (!errors.isEmpty()){
             res.render('category_form', {
