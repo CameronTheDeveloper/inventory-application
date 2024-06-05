@@ -5,7 +5,8 @@ const {body, validationResult} = require('express-validator');
 
 exports.index = asyncHandler(async (req, res, next) => {
     res.render('index', {
-        title: 'Shop Inventory Application'
+        title: 'Shop Inventory Application',
+        categoryListURL: '/catalog/categories'
     });
 });
 
