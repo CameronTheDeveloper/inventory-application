@@ -4,7 +4,9 @@ const asyncHandler = require('express-async-handler');
 const {body, validationResult} = require('express-validator');
 
 exports.index = asyncHandler(async (req, res, next) => {
-    res.send('index page not implemented');
+    res.render('index', {
+        title: 'Shop Inventory Application'
+    });
 });
 
 exports.category_list = asyncHandler(async (req, res, next) => {
