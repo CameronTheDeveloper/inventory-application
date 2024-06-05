@@ -86,7 +86,7 @@ exports.category_delete_get = asyncHandler(async (req, res, next) => {
         res.redirect('/catalog/categories');
     }
 
-    res.render('delete_category', {
+    res.render('category_delete', {
         title: 'Delete Category',
         category: category,
         items_list: allItemsInCategory,
@@ -100,7 +100,7 @@ exports.category_delete_post = asyncHandler(async (req, res, next) => {
     ]);
 
     if (allItemsInCategory.length > 0){
-        res.render('delete_category', {
+        res.render('category_delete', {
             title: 'Delete Category',
             category: category,
             items_list: allItemsInCategory,
