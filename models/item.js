@@ -10,7 +10,8 @@ const ItemSchema = new Schema({
         required: true,
         min: 0.01,
         max: 1000000
-    }
+    },
+    amount_in_stock: {type: Number, required: true, min: 0}
 });
 
 ItemSchema.virtual('url').get(function() {

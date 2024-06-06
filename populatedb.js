@@ -37,8 +37,8 @@ console.log(
     console.log(`Added category: ${name}`);
   }
   
-  async function itemCreate(index, name, desc, category, price) {
-    const itemDetails = { name: name, description: desc, price: price};
+  async function itemCreate(index, name, desc, category, price, amount_in_stock) {
+    const itemDetails = { name: name, description: desc, price: price, amount_in_stock: amount_in_stock};
     
     if (category != false) itemDetails.category = category;
     
@@ -65,49 +65,57 @@ console.log(
         "Couch",
         "A comfortable and stylish seating option",
         categories[0],
-        179.99
+        179.99,
+        17
       ),
       itemCreate(1,
         "Desk",
         "A spacious and sturdy desk for your office work",
         categories[1],
-        249.99
+        249.99,
+        25
       ),
       itemCreate(2,
         "Chair",
         "An ergonomic office chair to support long hours of work",
         categories[1],
-        129.99
+        129.99,
+        44
       ),
       itemCreate(3,
         "Lamp",
         "A stylish lamp to brighten your workspace",
         categories[1],
-        49.99
+        49.99,
+        87
       ),
       itemCreate(4,
         "Patio Set",
         "A durable and comfortable patio set for outdoor relaxation",
         categories[2],
-        399.99
+        399.99,
+        2
       ),
       itemCreate(5,
         "Grill",
         "A high-quality grill for outdoor cooking",
         categories[2],
-        299.99
+        299.99,
+        4
       ),
       itemCreate(6,
         "Bookshelf",
         "A spacious bookshelf for organizing your books and decor",
         categories[0],
-        99.99
+        99.99,
+        5
       ),
       itemCreate(7,
         "Rug",
         "A stylish rug to add warmth and comfort to any room",
         categories[0],
-        59.99
+        59.99,
+        21
       ),
     ]);
   }
