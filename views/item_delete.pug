@@ -1,6 +1,11 @@
 extends layout 
 
 block content 
-    h1=title 
+    h1 #{title}: #{item.name}
 
-    
+    p Warning! This action will delete all #{`(${item.amount_in_stock})`} items in stock. Do you wish to proceed?
+
+    form(method='POST')
+        input#itemId(type='hidden', name='itemId', value=item._id)
+        button(type='submit') Delete
+
