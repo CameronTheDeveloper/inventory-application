@@ -121,6 +121,37 @@ exports.category_update_get = asyncHandler(async (req, res, next) => {
     });
 });
 
-exports.category_update_post = asyncHandler(async (req, res, next) => {
-    res.send('category_update_post not iplemented');
-});
+exports.category_update_post = [
+    body('category_name')
+        .trim()
+        .isLength({min: 1})
+        .escape()
+        .withMessage('Category name must be specified.')
+        .isAlphanumeric()
+    .withMessage('Category name has non-alphanumeric characters.'),
+    body('category_desc')
+        .trim()
+        .isLength(10)
+        .escape()
+        .withMessage('Description must be 10+ characters long'),
+
+    asyncHandler(async (req, res, next) => {
+        const errors = validationResult(req);
+        const category = new Category({
+            name: req.body.category_name, 
+            description: req.body.category_desc,
+            _id: req.params.id
+        });
+
+        if (!errors.isEmpty()){
+            res.render('category_form', {
+                title: 'Update Category',
+                category: category,
+                errors: errors.array()
+            });
+        } else {
+            const updatedCategory = await Category.findByIdAndUpdate(req.params.id, category, {});
+            res.redirect(updatedCategory.url);
+        }
+    }
+)];
