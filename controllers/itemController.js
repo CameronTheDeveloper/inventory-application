@@ -14,7 +14,7 @@ exports.item_detail = asyncHandler(async (req, res, next) => {
 });
 
 exports.item_create_get = asyncHandler(async (req, res, next) => {
-    res.send('item_create_get not iplemented');
+    res.render('item_form', { title: 'Add items' })
 });
 
 exports.item_create_post = asyncHandler(async (req, res, next) => {
