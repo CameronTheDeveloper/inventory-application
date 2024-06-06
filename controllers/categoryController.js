@@ -113,7 +113,12 @@ exports.category_delete_post = asyncHandler(async (req, res, next) => {
 });
 
 exports.category_update_get = asyncHandler(async (req, res, next) => {
-    res.send('category_update_get not iplemented');
+    const category = await Category.findById(req.params.id).exec();
+
+    res.render('category_form', {
+        title: 'Update Category',
+        category: category
+    });
 });
 
 exports.category_update_post = asyncHandler(async (req, res, next) => {
