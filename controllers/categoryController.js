@@ -2,6 +2,7 @@ const Category = require('../models/category');
 const Item = require('../models/item');
 const asyncHandler = require('express-async-handler');
 const {body, validationResult} = require('express-validator');
+const debug = require('debug')('category');
 
 exports.index = asyncHandler(async (req, res, next) => {
     res.render('index', {
@@ -83,7 +84,11 @@ exports.category_delete_get = asyncHandler(async (req, res, next) => {
     ]);
 
     if (category === null){
-        res.redirect('/catalog/categories');
+        // No results.
+        debug(`id not found on delete: ${req.params.id}`);
+        const err = new Error("Category not found");
+        err.status = 404;
+        return next(err);
     }
 
     res.render('category_delete', {
@@ -114,6 +119,14 @@ exports.category_delete_post = asyncHandler(async (req, res, next) => {
 
 exports.category_update_get = asyncHandler(async (req, res, next) => {
     const category = await Category.findById(req.params.id).exec();
+
+    if (category === null){
+        // No results.
+        debug(`id not found on update: ${req.params.id}`);
+        const err = new Error("Category not found");
+        err.status = 404;
+        return next(err);
+    }
 
     res.render('category_form', {
         title: 'Update Category',
