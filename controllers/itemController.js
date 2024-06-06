@@ -10,6 +10,14 @@ exports.item_list = asyncHandler(async (req, res, next) => {
 exports.item_detail = asyncHandler(async (req, res, next) => {
     const item = await Item.findById(req.params.id).exec();
 
+    if (item === null){
+        // No results.
+        debug(`id not found: ${req.params.id}`);
+        const err = new Error("Item not found");
+        err.status = 404;
+        return next(err);
+    }
+
     res.render('item_detail', {
         item: item,
     });
@@ -73,6 +81,14 @@ exports.item_create_post = [
 
 exports.item_delete_get = asyncHandler(async (req, res, next) => {
     const item = await Item.findById(req.params.id).exec();
+
+    if (item === null){
+        // No results.
+        debug(`id not found on delete: ${req.params.id}`);
+        const err = new Error("Item not found");
+        err.status = 404;
+        return next(err);
+    }
 
     res.render('item_delete', {
         title: 'Delete item',
