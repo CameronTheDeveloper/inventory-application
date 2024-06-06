@@ -14,12 +14,55 @@ exports.item_detail = asyncHandler(async (req, res, next) => {
 });
 
 exports.item_create_get = asyncHandler(async (req, res, next) => {
-    res.render('item_form', { title: 'Add items' })
+    res.render('item_form', { title: 'Add item' })
 });
 
-exports.item_create_post = asyncHandler(async (req, res, next) => {
-    res.send('item_create_post not iplemented');
-});
+exports.item_create_post = [
+    body('item_name')
+        .trim()
+        .isLength({min: 2})
+        .trim()
+        .withMessage('Item name must be at least 2 characters long')
+        .isAlphanumeric()
+        .withMessage('Item name has non-alphanumeric characters.'),
+    body('item_desc')
+        .trim()
+        .isLength({min: 5})
+        .trim()
+        .withMessage('Item description must be at least 5 characters long')
+        .isAlphanumeric()
+        .withMessage('Item description has non-alphanumeric characters.'),
+    body('item_price')
+        .isFloat({min: 0})
+        .withMessage('Item price must be a positive decimal number'),
+    body('item_amount_in_stock')
+        .isInt({min: 0})
+        .withMessage('Item amount-in-stock must be a positive integer'),
+
+    asyncHandler(async (req, res, next) => {
+        const errors = validationResult(req);
+
+        const item = new Item({
+            name: req.body.item_name,
+            description: req.body.item_desc,
+            category: req.body.item_category,
+            price: req.body.item_price,
+            amount_in_stock: req.body.item_amount_in_stock
+        });
+
+        if (!errors.isEmpty()){
+            res.render('item_form', {
+                title: 'Add item',
+                item: item,
+                errors: errors.array()
+            });
+            return;
+        } else {
+            await item.save();
+            res.redirect(item.url)
+        }
+    }
+)];
 
 exports.item_delete_get = asyncHandler(async (req, res, next) => {
     res.send('item_delete_get not iplemented');
