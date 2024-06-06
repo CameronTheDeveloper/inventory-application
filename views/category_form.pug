@@ -6,7 +6,7 @@ block content
     form(method='POST')
         label(for='category_name') Category name: 
         input#category_name(type='text', placeholder='Category name', name='category_name', required, value=(undefined===category ? '' : category.name))
-        abel(for='category_desc') Description: 
+        label(for='category_desc') Description: 
         input#category_desc(type='text', placeholder='Description', name='category_desc', required, value=(undefined===category ? '' : category.description))
         button(type='submit') Submit
 
