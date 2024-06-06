@@ -96,7 +96,16 @@ exports.item_delete_post = asyncHandler(async (req, res, next) => {
 });
 
 exports.item_update_get = asyncHandler(async (req, res, next) => {
-    res.send('item_update_get not iplemented');
+    const [item, categories] = await Promise.all([
+        Item.findById(req.params.id),
+        Category.find().exec()
+    ]);
+
+    res.render('item_form', {
+        title: 'Update item',
+        category_list: categories,
+        item: item
+    });
 });
 
 exports.item_update_post = asyncHandler(async (req, res, next) => {
