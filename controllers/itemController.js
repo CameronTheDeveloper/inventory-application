@@ -18,24 +18,24 @@ exports.item_create_get = asyncHandler(async (req, res, next) => {
 });
 
 exports.item_create_post = [
-    body('item_name')
+    body('itemName')
         .trim()
         .isLength({min: 2})
         .trim()
         .withMessage('Item name must be at least 2 characters long')
         .isAlphanumeric()
         .withMessage('Item name has non-alphanumeric characters.'),
-    body('item_desc')
+    body('itemDesc')
         .trim()
         .isLength({min: 5})
         .trim()
         .withMessage('Item description must be at least 5 characters long')
         .isAlphanumeric()
         .withMessage('Item description has non-alphanumeric characters.'),
-    body('item_price')
+    body('itemPrice')
         .isFloat({min: 0})
         .withMessage('Item price must be a positive decimal number'),
-    body('item_amount_in_stock')
+    body('itemAmountInStock')
         .isInt({min: 0})
         .withMessage('Item amount-in-stock must be a positive integer'),
 
@@ -43,11 +43,11 @@ exports.item_create_post = [
         const errors = validationResult(req);
 
         const item = new Item({
-            name: req.body.item_name,
-            description: req.body.item_desc,
-            category: req.body.item_category,
-            price: req.body.item_price,
-            amount_in_stock: req.body.item_amount_in_stock
+            name: req.body.itemName,
+            description: req.body.itemDesc,
+            category: req.body.itemCategory,
+            price: req.body.itemPrice,
+            amount_in_stock: req.body.itemAmountInStock
         });
 
         if (!errors.isEmpty()){
