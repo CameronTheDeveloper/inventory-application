@@ -1,6 +1,7 @@
 const Item = require('../models/item');
+const Category = require('../models/category');
 const asyncHandler = require('express-async-handler');
-const {body, validationResult} = require('express-validator')
+const {body, validationResult} = require('express-validator');
 
 exports.item_list = asyncHandler(async (req, res, next) => {
     res.send('item_list not implemented');
@@ -15,7 +16,9 @@ exports.item_detail = asyncHandler(async (req, res, next) => {
 });
 
 exports.item_create_get = asyncHandler(async (req, res, next) => {
-    res.render('item_form', { title: 'Add item' })
+    const categories = await Category.find().exec();
+
+    res.render('item_form', { title: 'Add item', category_list: categories  })
 });
 
 exports.item_create_post = [
@@ -52,9 +55,12 @@ exports.item_create_post = [
         });
 
         if (!errors.isEmpty()){
+            const categories = await Category.find().exec();
+
             res.render('item_form', {
                 title: 'Add item',
                 item: item,
+                category_list: categories,
                 errors: errors.array()
             });
             return;
