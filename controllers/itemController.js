@@ -74,10 +74,6 @@ exports.item_create_post = [
 exports.item_delete_get = asyncHandler(async (req, res, next) => {
     const item = await Item.findById(req.params.id).exec();
 
-    if (item === null){
-        res.redirect('/catalog/catagories');
-    }
-
     res.render('item_delete', {
         title: 'Delete item',
         item: item
@@ -86,8 +82,17 @@ exports.item_delete_get = asyncHandler(async (req, res, next) => {
 
 exports.item_delete_post = asyncHandler(async (req, res, next) => {
     const item = await Item.findById(req.params.id).exec();
-    await Item.findByIdAndDelete(req.body.itemId);
-    res.redirect('/catalog/categories');
+    
+    if (item === null){
+        res.render('item_delete', {
+            title: 'Delete item',
+            item: item
+        });
+        return;
+    } else {
+        await Item.findByIdAndDelete(req.body.itemId);
+        res.redirect('/catalog/categories');
+    }
 });
 
 exports.item_update_get = asyncHandler(async (req, res, next) => {
