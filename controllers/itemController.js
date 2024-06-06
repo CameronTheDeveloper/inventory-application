@@ -85,7 +85,9 @@ exports.item_delete_get = asyncHandler(async (req, res, next) => {
 });
 
 exports.item_delete_post = asyncHandler(async (req, res, next) => {
-    res.send('item_delete_post not iplemented');
+    const item = await Item.findById(req.params.id).exec();
+    await Item.findByIdAndDelete(req.body.itemId);
+    res.redirect('/catalog/categories');
 });
 
 exports.item_update_get = asyncHandler(async (req, res, next) => {
