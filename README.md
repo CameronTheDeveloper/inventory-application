@@ -1,6 +1,6 @@
 # Store Inventory Application
 
-## [Live Site](https://fantasy-foul-enquiry.glitch.me)
+## [Live Site](https://florentine-skitter-macadamia.glitch.me)
 
 ## Overview
 
