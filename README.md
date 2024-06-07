@@ -1,8 +1,10 @@
-# Furniture Inventory Application
+# Store Inventory Application
+
+## [Live Site](https://fantasy-foul-enquiry.glitch.me)
 
 ## Overview
 
-The Furniture Inventory Application is a robust and efficient solution designed to manage and track furniture inventory. Built with the Express framework for Node.js, this application leverages MongoDB for data storage, providing a seamless and dynamic interface for users to access and manage various categories and items within the inventory.
+The Store Inventory Application is a robust and efficient solution designed to manage and track store inventory. Built with the Express framework for Node.js, this application leverages MongoDB for data storage, providing a seamless and dynamic interface for users to access and manage various categories and items within the inventory.
 
 ## Features
 
